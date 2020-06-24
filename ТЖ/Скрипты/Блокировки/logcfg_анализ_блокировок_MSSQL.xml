@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+	
+	<log history="72" location="C:\locks_sql">
+		<event>
+			<eq property="Name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+		</event>
+		<property name="t:computerName"/>
+		<property name="t:connectID"/>
+		<property name="Context"/>
+		<property name="Sql"/>
+		<property name="Sdbl"/>
+		<property name="lkaid"/>
+		<property name="lka"/>
+		<property name="lkp"/>
+		<property name="lkpid"/>
+		<property name="lksrc"/>
+		<property name="tableName"/>
+		<property name="Usr"/>
+		<property name="dbpid"/>
+	</log>
+	
+	<dbmslocks/>
+	
+</config>
