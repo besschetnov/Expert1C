@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+  <log location="c:\1c_logs\Query_top1" history="24">
+
+		<event>
+			<eq property="Name" value="DBMSSQL"/>
+
+			<like property="Sql" value="%T1._AccountDtRRef,%"/>
+			<like property="Sql" value="%T1._AccountCtRRef,%"/>
+			<like property="Sql" value="%CAST(SUM(T1._Fld7827) AS NUMERIC(27, 8))%"/>
+			<like property="Sql" value="%FROM dbo._AccRg7823 T1%"/>
+			<like property="Sql" value="%FROM dbo._InfoRg5467 T2%"/>
+
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+   
+   </log>
+
+  <log location="c:\1c_logs\Query_top2" history="24">
+
+		<event>
+			<eq property="Name" value="DBMSSQL"/>
+
+			<like property="Sql" value="%CAST(COUNT(T1._Fld7824RRef) AS NUMERIC(10)),%"/>
+			<like property="Sql" value="%CAST(SUM(T1._Fld7827) AS NUMERIC(27, 8))%"/>
+			<like property="Sql" value="%FROM dbo._AccumRg5679 T1%"/>
+
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+   
+   </log>
+   
+</config>

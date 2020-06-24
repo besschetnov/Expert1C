@@ -1,0 +1,125 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+	<log location="E:\1c_logs\queries_РасходныйОрдерНаТовары" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.РасходныйОрдерНаТовары%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_ПоступлениеТоваровУслуг" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.ПоступлениеТоваровУслуг%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_ЗаказКлиента" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.ЗаказКлиента%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_РеализацияТоваровУслуг" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.РеализацияТоваровУслуг%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_ПоступлениеБезналичныхДенежныхСредств" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.ПоступлениеБезналичныхДенежныхСредств%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_ВнутреннееПотреблениеТоваров" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.ВнутреннееПотреблениеТоваров%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_СписаниеБезналичныхДенежныхСредств" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.СписаниеБезналичныхДенежныхСредств%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+	<log location="E:\1c_logs\queries_ПриходныйОрдерНаТовары" history="72">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="erp"/>
+			<ge property="Durationus" value="1000"/>
+			<like property="Context" value="%Документ.ПриходныйОрдерНаТовары%"/>
+		</event>
+
+		<property name="Usr"/>
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+</config>
+

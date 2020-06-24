@@ -1,0 +1,3 @@
+USE [TrProf83]
+go
+DBCC OPENTRAN

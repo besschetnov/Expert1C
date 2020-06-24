@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+    <log location="C:\1c_logs\full" history="8">
+	
+        <event>
+            <ne property="name" value=""/>
+        </event>
+		
+		<property name="all"/>
+		
+    </log>
+	
+</config>

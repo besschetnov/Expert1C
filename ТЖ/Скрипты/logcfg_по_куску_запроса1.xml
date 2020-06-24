@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+  <log location="c:\1c_logs\Queries_top1" history="72">
+
+		<event>
+			<eq property="Name" value="DBMSSQL"/>
+
+			<like property="Sql" value="%_Document26%"/>
+			<like property="Sql" value="%_Document21%"/>
+			<like property="Sql" value="%_Reference16%"/>
+
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+   
+   </log>
+   
+   	<log location="c:\1c_logs\Queries_top2" history="72">
+
+		<event>
+		
+			<eq property="Name" value="DBMSSQL"/>
+
+			<like property="Sql" value="%_Reference10966%"/>
+			<like property="Sql" value="%_Reference11158%"/>
+			<like property="Sql" value="%_Reference11153%"/>
+
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+   
+   	<log location="c:\1c_logs\Queries_top3" history="72">
+
+		<event>
+		
+			<eq property="Name" value="DBMSSQL"/>
+
+			<like property="Sql" value="%_InfoRg134%"/>
+			<like property="Sql" value="%_AccumRg456%"/>
+
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+   
+</config>

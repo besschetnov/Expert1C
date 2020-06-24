@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+    <log location="C:\1c_logs\circrefs" history="96">
+	
+        <event>
+            <eq property="name" value="SCRIPTCIRCREFS"/>
+        </event>
+		
+        <event>
+            <eq property="name" value="EXCP"/>
+        </event>
+		
+        <property name="all"/>
+		
+    </log>
+	
+    <scriptcircrefs/>
+	
+</config>

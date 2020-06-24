@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+	<dump location="c:\1c_logs\dumps" create="1" type="3"/>
+
+	<log location="c:\1c_logs\trans" history="600">
+
+		<event>
+			<eq property="name" value="SDBL"/>
+			<eq property="p:processName" value="TrProf83"/>
+			<like property="Func" value="%Transaction%"/>
+		</event>
+
+		<property name="all"/>
+
+	</log>
+
+</config>
+

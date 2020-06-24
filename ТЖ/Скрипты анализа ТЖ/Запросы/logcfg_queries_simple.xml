@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+	<log location="c:\1c_logs\queries_simple" history="4">
+
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<eq property="p:processName" value="Test1CProf"/>
+			<ge property="Durationus" value="100000"/>
+		</event>
+
+		<property name="Sql"/>
+		<property name="Context"/>
+
+	</log>
+
+</config>
+

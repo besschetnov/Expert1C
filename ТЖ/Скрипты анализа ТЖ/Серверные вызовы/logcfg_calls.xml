@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+	<log location="c:\1c_logs\calls" history="600">
+		
+		<event>
+			<eq property="name" value="CALL"/> 
+			<eq property="p:processName" value="Test1CProf"/>
+			<ge property="Duration" value="1000"/> 
+		</event>
+
+		<property name="Usr"/>
+		<property name="Context"/>
+		<property name="SessionID"/>
+		<property name="Memory"/>
+		<property name="MemoryPeak"/>
+		<property name="InBytes"/>
+		<property name="OutBytes"/>
+		
+	</log>
+
+</config>

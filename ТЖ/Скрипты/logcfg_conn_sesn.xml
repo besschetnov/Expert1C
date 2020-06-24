@@ -1,0 +1,28 @@
+﻿<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+
+  <log location="C:\1c_logs\conn" history="600">
+
+		<event>
+		
+			<eq property="Name" value="CONN"/>
+			
+		</event>
+
+	   <property name="all"/>
+   
+   </log>
+
+  <log location="C:\1c_logs\sesn" history="600">
+
+		<event>
+		
+			<eq property="Name" value="SESN"/>
+			
+		</event>
+
+	   <property name="all"/>
+   
+   </log>
+   
+</config>

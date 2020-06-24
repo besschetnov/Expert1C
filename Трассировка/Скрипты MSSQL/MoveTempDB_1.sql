@@ -1,0 +1,6 @@
+Use
+master
+;
+ALTER DATABASE TEMPDB MODIFY FILE (NAME='tempdev1', FILENAME='H:\TEMPDB\tempdev1.mdf')
+;
+ALTER DATABASE TEMPDB MODIFY FILE (NAME='templog', FILENAME='J:\SQLLOG\templog.ldf')

@@ -1,0 +1,1 @@
+{printf "%.3f=AvgDuration,%d=TotalDuration,%s\n", Dur[i]/Execs[i], Dur[i], i}
