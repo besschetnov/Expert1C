@@ -1,0 +1,33 @@
+﻿КАК УВИДЕТЬ, КТО КОГО БЛОКИРУЕТ
+
+	1. Консоль серверов 1C, колонки "Заблокировано СУБД", "Заблокировано упр"
+
+	2. DMV, например 
+		- sys.dm_exec_requests, sys.dm_os_waiting_tasks
+		- sys.dm_tran_locks (покажет установленные блокировки и блокировки, которые ждут)
+
+	3. Хранимые процедуры	
+		
+		- sp_lock (покажет установленные блокировки MS SQL) или pg_locks (покажет установленные блокировки Postgres)
+		- sp_who, sp_who2
+
+	4. Стандартные отчеты MS SQL (All Blocking Transactions)
+
+	5. Activity monitor
+	
+	6. Трассировка СУБД (Extended events/Profiler), событиe 
+
+		Blocked_process_report (не забыть поставить в параметрах инстанса "Blocked process threshold" > 0)
+		
+КАК РАССЛЕДОВАТЬ, КТО КОГО БЛОКИРОВАЛ
+
+	1. ЦУП - полная информация о том, какая строчка кода кого заблокировала
+
+	2. ТЖ, например DBMSSQL + dbmslocks для блокировок СУБД
+	   TLOCK, TTIMEOUT, TDEADLOCK для упр блокировок 
+	   
+	3. Трассировка СУБД (Extended events/Profiler), события 
+
+		- Blocked_process_report (не забыть поставить в параметрах инстанса "Blocked process threshold" > 0)
+		- Lock_acquired (обычно с фильтром Duration > 0), Lock_timeout, Lock_deadlock, Lock_escalation
+

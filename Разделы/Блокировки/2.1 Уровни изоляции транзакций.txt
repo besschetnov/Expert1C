@@ -1,0 +1,60 @@
+﻿УРОВНИ ИЗОЛЯЦИИ ТРАНЗАКЦИЙ
+
+	Предназначены, чтобы обеспечить третье свойство транзакции - Isolation
+
+	Проблемы:
+	
+	- потерянное обновление
+	- грязное чтение
+	- неповторяемое чтение
+	- фантомы
+
+	Транзакции не влияют друг на друга. 
+
+	1. READ UNCOMMITED - решает проблему потерянного обновления 
+
+		BEGIN TRANSACTION
+		
+		SELECT x FROM Table WITH (NOLOCK) 
+	
+		х был = 0
+	
+		T1 write x = 1
+		T2 write x = 2
+		
+	2.1 READ COMMITED - решает проблему грязного чтения, потерянного обновления
+		READ COMMITED (SNAPSHOT) - решает проблему грязного чтения, потерянного обновления
+
+		BEGIN TRANSACTION
+		
+		SELECT x FROM Table 
+	
+		T2 -> write х = 1
+		T1 -> read х = 1
+	
+		T2 - откат, теперь х = 0
+	
+	3. REPEATABLE READ - решает проблему неповторяемого чтения, грязного чтения, потерянного обновления
+
+		BEGIN TRANSACTION
+		
+		SELECT x FROM Table WITH (REPEATABLEREAD) ИЛИ WITH (REPEATABLEREAD, UPDLOCK)
+
+	
+		T1 -> read х = 1
+		T2 -> write х = 2
+		T1 -> read х = 2
+		
+	4. SERIALIZABLE -  решает проблему фантомов, неповторяемого чтения, грязного чтения, потерянного обновления
+
+		BEGIN TRANSACTION
+		
+		SELECT x FROM Table WITH (SERIALIZABLE) ИЛИ WITH (SERIALIZABLE, UPDLOCK)
+	
+	
+		T1 -> read х >= 1, возвращается х = 1, 3, 5
+		
+		T2 -> insert х = 2
+			
+		T1 -> read х >= 1, возвращается х = 1, 2, 3, 5
+			
