@@ -1,0 +1,64 @@
+
+-- Создаем временную таблицу для сохранения списка регистраторов и номеров строк регистра
+exec sp_executesql N'INSERT INTO #tt7 WITH(TABLOCK) (_RecorderTRef, _RecorderRRef, _LineNo) SELECT
+T1.RecorderTRef,
+T1.RecorderRRef,
+T1.LineNo_
+FROM (SELECT DISTINCT
+T2._RecorderTRef AS RecorderTRef,
+T2._RecorderRRef AS RecorderRRef,
+T2._LineNo AS LineNo_
+FROM dbo._AccRg1465 T2
+INNER JOIN dbo._AccRgED1511 T3
+ON T3._RecorderTRef = T2._RecorderTRef AND T3._RecorderRRef = T2._RecorderRRef AND T3._LineNo = T2._LineNo AND T3._Period = T2._Period AND T3._Correspond = @P1 AND T3._Period >= @P2 AND T3._Period <= @P3
+WHERE (((T2._Fld1287 = @P4)) AND (T3._Fld1287 = @P5)) AND (((T2._AccountCtRRef = @P6) AND (T2._Fld1466RRef = @P7) AND (T3._Value_TYPE = 0x08 AND T3._Value_RTRef = 0x0000015E AND T3._Value_RRRef = @P8) AND (T3._Value_TYPE = 0x08 AND T3._Value_RTRef = 0x0000015E)) AND T2._Period >= @P9 AND T2._Period <= @P10)) T1',N'@P1 numeric(10),@P2 datetime2(3),@P3 datetime2(3),@P4 numeric(10),@P5 numeric(10),@P6 varbinary(16),@P7 varbinary(16),@P8 varbinary(16),@P9 datetime2(3),@P10 datetime2(3)',1,'4019-04-01 00:00:00','4019-05-01 00:00:00',0,0,0x80C100155D50C51411E49A52C46D1DE7,0x80C100155D50C51411E49A63A3F50D20,0x80C100155D50C51411E49A52CDD43359,'4019-04-01 00:00:00','4019-05-01 00:00:00'
+		  
+
+-- Переносим порцию данных (1000 строк) по регистраторам из предыдущей таблицы
+INSERT INTO #tt8 WITH(TABLOCK) (_RecorderTRef, _RecorderRRef, _LineNo) SELECT
+T1.RecorderTRef,
+T1.RecorderRRef,
+T1.LineNo_
+FROM (SELECT TOP 1000
+T2._RecorderTRef AS RecorderTRef,
+T2._RecorderRRef AS RecorderRRef,
+T2._LineNo AS LineNo_
+FROM #tt7 T2 WITH(NOLOCK)
+ORDER BY T2._RecorderTRef, T2._RecorderRRef, T2._LineNo) T1
+
+
+			
+-- Получаем данные по порции регистраторов из основной таблицы
+exec sp_executesql N'INSERT INTO #tt9 WITH(TABLOCK) (_LineNo, _RecorderTRef, _RecorderRRef, _Fld1478RRef, _AccountDtRRef, _AccountCtRRef, _Fld1466RRef, _Fld1480RRef, _Fld1468) SELECT
+T2._LineNo,
+T2._RecorderTRef,
+T2._RecorderRRef,
+T2._Fld1478RRef,
+T2._AccountDtRRef,
+T2._AccountCtRRef,
+T2._Fld1466RRef,
+T2._Fld1480RRef,
+T2._Fld1468
+FROM #tt8 T1 WITH(NOLOCK)
+INNER JOIN dbo._AccRg1465 T2
+ON T1._RecorderTRef = T2._RecorderTRef AND T1._RecorderRRef = T2._RecorderRRef AND T1._LineNo = T2._LineNo
+WHERE (T2._Fld1287 = @P1)',N'@P1 numeric(10)',0
+
+
+-- Получаем данные по порции регистраторов из таблицы значений субконто
+exec sp_executesql N'INSERT INTO #tt10 WITH(TABLOCK) (_RecorderTRef, _RecorderRRef, _LineNo, _KindRRef, _Value_TYPE, _Value_RTRef, _Value_RRRef, _Correspond, _AccEdKindLineNo) SELECT
+T2._RecorderTRef,
+T2._RecorderRRef,
+T2._LineNo,
+T2._KindRRef,
+T2._Value_TYPE,
+T2._Value_RTRef,
+T2._Value_RRRef,
+T2._Correspond,
+T3._LineNo
+FROM #tt9 T1 WITH(NOLOCK)
+INNER JOIN dbo._AccRgED1511 T2
+ON T1._RecorderTRef = T2._RecorderTRef AND T1._RecorderRRef = T2._RecorderRRef AND T1._LineNo = T2._LineNo
+INNER JOIN dbo._Acc38_ExtDim1320 T3
+ON CASE WHEN T2._Correspond = @P1 THEN T1._AccountDtRRef ELSE T1._AccountCtRRef END = T3._Acc38_IDRRef AND T2._KindRRef = T3._DimKindRRef
+WHERE ((T2._Fld1287 = @P2)) AND (T3._Fld1287 = @P3)',N'@P1 numeric(10),@P2 numeric(10),@P3 numeric(10)',0,0,0
